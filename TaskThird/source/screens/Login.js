@@ -6,16 +6,21 @@ export default function Login({navigation}) {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [token, setToken] = useState('');
+
   const loginHandler = async () => {
-    // try {
-    //   setToken('abc123');
-    //   await AsyncStorage.setItem('email', email);
-    //   await AsyncStorage.setItem('token', 'abc123');
-    //   // await AsyncStorage.multiSet([['username',email],
-    //   // ['token','abc12rr3']])
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    try {
+      await setToken('abc123');
+      // await AsyncStorage.setItem('email', email);
+      // await AsyncStorage.setItem('token', 'abc123');
+      // await AsyncStorage.multiSet([['email',email],
+      // ['token','abc123']])
+      await AsyncStorage.setItem(
+        'userprofile',
+        JSON.stringify({email: email, token: token}),
+      );
+    } catch (err) {
+      console.log(err);
+    }
 
     if (!email.trim()) {
       alert('Please Enter email');
@@ -28,7 +33,21 @@ export default function Login({navigation}) {
     navigation.navigate('Drawer');
     alert('Success');
   };
-  
+
+  getData = async () => {
+    try {
+      // const value = await AsyncStorage.getItem('token');
+      // const email = await AsyncStorage.getItem('email');
+      const userprofile=await AsyncStorage.getItem('userprofile')
+      const Email=JSON.parse(userprofile)
+      if (userprofile !== null) {
+        setUserProfile({...Email});
+      }
+      if (email !== null) {
+        setEmail(email); 
+      }
+    } catch (e) {}
+  };
 
   const registerHandler = function () {
     navigation.navigate('Register');

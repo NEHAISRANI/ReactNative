@@ -33,7 +33,7 @@ export default function App(){
 //       await AsyncStorage.setItem('username', this.state.username);
 //       await AsyncStorage.setItem('token', 'abc123');
 //     // await AsyncStorage.multiSet([['username',this.state.username],
-//         // ['token','abc12rr3']])
+//         // ['token','abc123']])
 //     } catch (err) {  
 //       console.log(err);
 //     }

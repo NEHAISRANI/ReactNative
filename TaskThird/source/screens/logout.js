@@ -1,10 +1,12 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {View, Text,StyleSheet} from 'react-native';
 
 export default function Logout({navigation}) {
   const logOut = async () => {
     try {
-      await AsyncStorage.clear().then(() => console.log('cleared'));
+      // await AsyncStorage.removeItem('token') //want to remove one item
+      await AsyncStorage.clear().then(() => console.log('cleared')); //whole data will be clear
     } catch (err) {
       console.log(err);
     }
