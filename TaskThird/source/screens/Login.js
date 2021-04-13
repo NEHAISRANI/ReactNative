@@ -22,7 +22,7 @@ export default function Login({navigation}) {
       console.log(err);
     }
 
-    if (!email.trim()) {
+    if (!email.trim()) { 
       alert('Please Enter email');
       return;
     }
@@ -30,8 +30,11 @@ export default function Login({navigation}) {
       alert('Please Enter password');
       return;
     }
+    setEmail('')
+    setPass('')
     navigation.navigate('Drawer');
     alert('Success');
+    
   };
 
   getData = async () => {
@@ -40,13 +43,18 @@ export default function Login({navigation}) {
       // const email = await AsyncStorage.getItem('email');
       const userprofile=await AsyncStorage.getItem('userprofile')
       const Email=JSON.parse(userprofile)
+      // if(email!==null){
+      //   setEmail(email)
+      // }
       if (userprofile !== null) {
         setUserProfile({...Email});
       }
       if (email !== null) {
         setEmail(email); 
       }
-    } catch (e) {}
+    } catch (e) {
+      console.log(e)
+    }
   };
 
   const registerHandler = function () {
