@@ -1,11 +1,21 @@
-import React, {useState} from 'react';
-import {View, Text, Button, TextInput, StyleSheet, Alert} from 'react-native';
+import React, {useState,useEffect} from 'react';
+import {View, Text, Button, TextInput, StyleSheet} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login({navigation}) {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [token, setToken] = useState('');
+  useEffect(async () => {
+    var data=await AsyncStorage.getItem('userprofile')
+    console.log(data,"hbvhjjbbjbh")
+    if (data){
+      navigation.navigate("Home")
+      console.log("user exists")
+    }else{
+      console.log("user not exists")
+    }
+  }, [])
 
   const loginHandler = async () => {
     try {
@@ -22,7 +32,7 @@ export default function Login({navigation}) {
       console.log(err);
     }
 
-    if (!email.trim()) { 
+    if (!email.trim()) {
       alert('Please Enter email');
       return;
     }
@@ -32,9 +42,10 @@ export default function Login({navigation}) {
     }
     setEmail('')
     setPass('')
-    navigation.navigate('Drawer');
+    navigation.navigate('Drawer')
+    // navigation.replace('Login');
     alert('Success');
-    
+
   };
 
   getData = async () => {
@@ -43,6 +54,8 @@ export default function Login({navigation}) {
       // const email = await AsyncStorage.getItem('email');
       const userprofile=await AsyncStorage.getItem('userprofile')
       const Email=JSON.parse(userprofile)
+      console.log(userprofile)
+
       // if(email!==null){
       //   setEmail(email)
       // }
@@ -50,7 +63,7 @@ export default function Login({navigation}) {
         setUserProfile({...Email});
       }
       if (email !== null) {
-        setEmail(email); 
+        setEmail(email);
       }
     } catch (e) {
       console.log(e)
@@ -72,6 +85,8 @@ export default function Login({navigation}) {
           placeholder={'Email'}
           placeholderTextColor={'black'}
           onChangeText={text => setEmail(text)}
+          value={email}
+          autoCapitalize="none"
         />
         <Text style={styles.label}>Enter Password</Text>
         <TextInput
@@ -79,7 +94,9 @@ export default function Login({navigation}) {
           secureTextEntry={true}
           placeholder={'Password'}
           placeholderTextColor={'black'}
+          value={pass}
           onChangeText={text => setPass(text)}
+          autoCapitalize="none"
         />
       </View>
 
@@ -124,3 +141,66 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
+
+// import React, {Component} from 'react';
+
+// import {
+//   StyleSheet,
+//   Text,
+//   View,
+//   TextInput,
+//   TouchableOpacity,
+//   StatusBar,
+// } from 'react-native';
+
+// const userInfo = {username: 'admin', password: 'pass12345'};
+// export default class LoginScreen extends Component {
+//   static navigationOptions = {
+//     header: null,
+//   };
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       username: '',
+//       password: '',
+//     };
+//   }
+//   render() {
+//     return (
+//       <View>
+//         <StatusBar backgroundColor="#1e90ff" barStyle="light-content" />
+//         <Text>welcome Login to my app</Text>
+//         <TextInput
+//           placeholder="Username"
+//           onChangeText={username => this.setState({username})}
+//           value={this.state.username}
+//           autoCapitalize="none"
+//         />
+
+//         <TextInput
+//           placeholder="Password"
+//           secureTextEntry
+//           onChangeText={password => this.setState({password})}
+//           value={this.state.password}
+//         />
+//         <View>
+//           <TouchableOpacity onPress={this._login}>
+//             <Text>Login</Text>
+//           </TouchableOpacity>
+//           <TouchableOpacity></TouchableOpacity>
+//         </View>
+//       </View>
+//     );
+//   }
+//   _login = async () => {
+//     if (
+//       userInfo.username === this.state.username &&
+//       userInfo.password === this.state.password
+//     ) {
+//       await AsyncStorage.setItem('isLOggedIn', '1');
+//       this.props.navigation.navigate('Checkout');
+//     } else {
+//       alert('username or password is incorrect');
+//     }
+//   };
+// }

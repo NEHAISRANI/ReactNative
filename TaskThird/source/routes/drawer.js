@@ -1,7 +1,6 @@
 import React from 'react';
 import{createDrawerNavigator} from 'react-navigation-drawer';
 import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
 import Home from'../screens/home';
 import ArtworkDetails from '../screens/artworkDetails';
 import Cart from '../screens/cart';

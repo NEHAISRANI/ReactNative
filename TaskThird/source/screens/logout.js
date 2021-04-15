@@ -3,13 +3,8 @@ import React, {useState} from 'react';
 import {View, Text,StyleSheet,Button} from 'react-native';
 
 export default function Logout({navigation}) {
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
-  const [token, setToken] = useState('');
-
   const logOut = async () => {
     try {
-      //setToken("")
       // await AsyncStorage.removeItem('token') //want to remove one item
       await AsyncStorage.clear();
       console.log("done") //whole data will be clear
@@ -17,17 +12,13 @@ export default function Logout({navigation}) {
       console.log(err);
     }
     navigation.navigate('Login');
-    setEmail('')
-    setPass('')
   };
 
   return (
-    <View>
       <View>
         <Text style={styles.heading}>logout</Text>
         <Button title="logout" onPress={logOut} />
       </View>
-    </View>
   );
 }
 
