@@ -5,7 +5,6 @@ import {Image, TouchableOpacity} from 'react-native';
 import MyDrawer from '../routes/drawer';
 import Login from '../screens/Login';
 import Register from '../screens/Register';
-// import Checkout from '../screens/checkOut'
 const screens = {
   Login: {
     screen: Login,

@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 43,
     borderWidth: 1,
-    borderColor: 'orange',
+    borderColor: 'skyblue',
     width: 320,
     borderRadius: 5,
   },
@@ -141,66 +141,3 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
 });
-
-// import React, {Component} from 'react';
-
-// import {
-//   StyleSheet,
-//   Text,
-//   View,
-//   TextInput,
-//   TouchableOpacity,
-//   StatusBar,
-// } from 'react-native';
-
-// const userInfo = {username: 'admin', password: 'pass12345'};
-// export default class LoginScreen extends Component {
-//   static navigationOptions = {
-//     header: null,
-//   };
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       username: '',
-//       password: '',
-//     };
-//   }
-//   render() {
-//     return (
-//       <View>
-//         <StatusBar backgroundColor="#1e90ff" barStyle="light-content" />
-//         <Text>welcome Login to my app</Text>
-//         <TextInput
-//           placeholder="Username"
-//           onChangeText={username => this.setState({username})}
-//           value={this.state.username}
-//           autoCapitalize="none"
-//         />
-
-//         <TextInput
-//           placeholder="Password"
-//           secureTextEntry
-//           onChangeText={password => this.setState({password})}
-//           value={this.state.password}
-//         />
-//         <View>
-//           <TouchableOpacity onPress={this._login}>
-//             <Text>Login</Text>
-//           </TouchableOpacity>
-//           <TouchableOpacity></TouchableOpacity>
-//         </View>
-//       </View>
-//     );
-//   }
-//   _login = async () => {
-//     if (
-//       userInfo.username === this.state.username &&
-//       userInfo.password === this.state.password
-//     ) {
-//       await AsyncStorage.setItem('isLOggedIn', '1');
-//       this.props.navigation.navigate('Checkout');
-//     } else {
-//       alert('username or password is incorrect');
-//     }
-//   };
-// }

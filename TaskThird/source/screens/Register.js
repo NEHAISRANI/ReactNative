@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 43,
     borderWidth: 1,
-    borderColor: 'orange',
+    borderColor: 'skyblue',
     width: 320,
     borderRadius: 5,
   },
